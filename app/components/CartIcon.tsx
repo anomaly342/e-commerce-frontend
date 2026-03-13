@@ -5,8 +5,8 @@ export default function CartIcon() {
 			fill="currentColor"
 			strokeWidth="0"
 			viewBox="0 0 512 512"
-			height="200px"
-			width="200px"
+			height="1rem"
+			width="1rem"
 			xmlns="http://www.w3.org/2000/svg"
 			className="size-9"
 		>
