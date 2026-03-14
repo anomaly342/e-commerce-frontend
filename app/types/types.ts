@@ -5,3 +5,7 @@ export interface Product {
 	category: "men's clothing" | "jewelery" | "electronics" | "women's clothing";
 	image: string;
 }
+
+export interface CartItem extends Product {
+	quantity: number;
+}
