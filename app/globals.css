@@ -1,3 +1,4 @@
+@import "normalize.css";
 @tailwind utilities;
 @import "tailwindcss/theme.css";
 
@@ -6,8 +7,12 @@
 	--foreground: #171717;
 }
 
-* {
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Header from "./components/Header.tsx";
 import "./globals.css";
+
 const roboto = Roboto({
 	subsets: ["latin"],
 });
@@ -20,7 +21,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${roboto.className} antialiased text-gray-950`}>
 				<Header></Header>
-				{children}
+				<div className="flex justify-center">{children}</div>
 			</body>
 		</html>
 	);
