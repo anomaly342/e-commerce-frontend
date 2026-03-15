@@ -1,5 +1,5 @@
 "use client";
-import { Product } from "@/app/types/types.ts";
+import { Product } from "@/types/types.ts";
 import { memo } from "react";
 
 const ProductCard = memo(
@@ -13,7 +13,7 @@ const ProductCard = memo(
 	}: Product & { increase: (id: number) => void }) => {
 		return (
 			<div
-				className="flex flex-col shadow-md mt-8 px-2 py-4 rounded-md h-96"
+				className="flex flex-col shadow-md mt-8 px-2 py-4 rounded-md w-full h-96"
 				key={id}
 			>
 				<div className="h-7/12">

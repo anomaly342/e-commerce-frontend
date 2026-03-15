@@ -1,4 +1,4 @@
-import { CartUnit } from "@/app/types/types.ts";
+import { CartUnit } from "@/types/types.ts";
 import { memo } from "react";
 
 const CartItem = memo(

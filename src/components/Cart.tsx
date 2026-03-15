@@ -1,6 +1,6 @@
-import ArrowIcon from "@/app/components/ArrowIcon.tsx";
-import CartItem from "@/app/components/CartItem.tsx";
-import useCart from "@/app/hooks/useCart.ts";
+import CartItem from "@/components/CartItem.tsx";
+import ArrowIcon from "@/components/icons/ArrowIcon";
+import useCart from "@/hooks/useCart.ts";
 
 export default function Cart({
 	toggleShowCart,

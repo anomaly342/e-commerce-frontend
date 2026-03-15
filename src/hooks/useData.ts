@@ -1,4 +1,4 @@
-import { Product } from "@/app/types/types.ts";
+import { Product } from "@/src/types/types";
 import useSWR, { Fetcher } from "swr";
 
 const fetcher: Fetcher<Product[], string> = (url) =>

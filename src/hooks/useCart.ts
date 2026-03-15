@@ -1,6 +1,6 @@
-import { CartContext } from "@/app/contexts/CartContext.ts";
-import useData from "@/app/hooks/useData.ts";
-import { CartUnit } from "@/app/types/types.ts";
+import { CartContext } from "@/contexts/CartContext.ts";
+import useData from "@/hooks/useData.ts";
+import { CartUnit } from "@/types/types.ts";
 import { useCallback, useContext } from "react";
 
 export default function useCart() {
@@ -10,6 +10,10 @@ export default function useCart() {
 	const totalPrice = cart.reduce((total, current) => {
 		return total + current.price * current.quantity;
 	}, 0);
+
+	const toggleShowCart = () => {
+		setShowCart((prev) => !prev);
+	};
 
 	const increase = useCallback(
 		(id: number) => {
@@ -60,5 +64,5 @@ export default function useCart() {
 		});
 	}, []);
 
-	return { cart, totalPrice, showCart, setShowCart, increase, decrease };
+	return { cart, totalPrice, showCart, toggleShowCart, increase, decrease };
 }
