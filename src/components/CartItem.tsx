@@ -18,7 +18,7 @@ const CartItem = memo(
 		{
 			return (
 				<>
-					<li className="flex gap-2 px-2 py-4 border-sky-700 border-b h-32">
+					<li className="flex gap-2 px-2 py-4 border-sky-700 border-b h-40">
 						<div className="basis-1/4">
 							<img
 								className="w-full h-full object-contain"

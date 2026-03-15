@@ -4,6 +4,7 @@ export type Category =
 	| "electronics"
 	| "women's clothing";
 
+export type PriceRange = "none" | "a" | "b" | "c";
 export interface Product {
 	id: number;
 	title: string;
@@ -25,11 +26,11 @@ export interface CartContextType {
 
 export interface FilterContextType {
 	keyword: string;
-	categories: Category[];
-	minPrice: number;
-	maxPrice: number;
+	categories: { [key in Category]: boolean };
+	priceRange: PriceRange;
 	setKeyword: React.Dispatch<React.SetStateAction<string>>;
-	setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
-	setMinPrice: React.Dispatch<React.SetStateAction<number>>;
-	setMaxPrice: React.Dispatch<React.SetStateAction<number>>;
+	setCategories: React.Dispatch<
+		React.SetStateAction<{ [key in Category]: boolean }>
+	>;
+	setPriceRange: React.Dispatch<React.SetStateAction<PriceRange>>;
 }

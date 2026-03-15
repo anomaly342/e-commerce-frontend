@@ -40,7 +40,7 @@ export default function Cart({
 				<div className="px-4 py-6">
 					<div className="flex justify-between items-center bg-sky-200 px-4 py-4 rounded-xl">
 						<h3>Total Price</h3>
-						<p>{totalPrice.toFixed(2)}</p>
+						<p>${totalPrice.toFixed(2)}</p>
 					</div>
 					<button className="block content-center bg-blue-500 mt-4 mr-auto ml-auto px-4 py-3 border-none rounded-md font-bold text-white text-lg">
 						Check out

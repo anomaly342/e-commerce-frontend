@@ -3,7 +3,7 @@
 import Header from "@/components/Header.tsx";
 import { CartContext } from "@/contexts/CartContext.ts";
 import { FilterContext } from "@/contexts/FilterContext.ts";
-import { CartUnit, Category } from "@/types/types.ts";
+import { CartUnit, Category, PriceRange } from "@/types/types.ts";
 import { Roboto } from "next/font/google";
 import { useState } from "react";
 import "./globals.css";
@@ -20,9 +20,13 @@ export default function RootLayout({
 	const [showCart, setShowCart] = useState<boolean>(false);
 
 	const [keyword, setKeyword] = useState<string>("");
-	const [categories, setCategories] = useState<Category[]>([]);
-	const [minPrice, setMinPrice] = useState<number>(0);
-	const [maxPrice, setMaxPrice] = useState<number>(500);
+	const [categories, setCategories] = useState<{ [key in Category]: boolean }>({
+		"men's clothing": true,
+		"women's clothing": true,
+		electronics: true,
+		jewelery: true,
+	});
+	const [priceRange, setPriceRange] = useState<PriceRange>("none");
 	return (
 		<html lang="en">
 			<body
@@ -33,12 +37,10 @@ export default function RootLayout({
 						value={{
 							keyword,
 							categories,
-							minPrice,
-							maxPrice,
+							priceRange,
 							setKeyword,
 							setCategories,
-							setMinPrice,
-							setMaxPrice,
+							setPriceRange,
 						}}
 					>
 						<Header></Header>
