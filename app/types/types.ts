@@ -6,6 +6,13 @@ export interface Product {
 	image: string;
 }
 
-export interface CartItem extends Product {
+export interface CartUnit extends Product {
 	quantity: number;
+}
+
+export interface CartContextType {
+	cart: CartUnit[];
+	setCart: React.Dispatch<React.SetStateAction<CartUnit[]>>;
+	showCart: boolean;
+	setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 }

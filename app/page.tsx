@@ -1,26 +1,13 @@
 "use client";
-import { useState } from "react";
-import useSWR, { Fetcher } from "swr";
-
-import ProductCard from "./components/ProductCard.tsx";
-import { Product } from "./types/Product.ts";
-
-const fetcher: Fetcher<Product[], string> = (url) =>
-	fetch(url).then((res) => res.json());
+import ProductCard from "@/app/components/ProductCard.tsx";
+import useCart from "@/app/hooks/useCart.ts";
+import useData from "@/app/hooks/useData.ts";
+import useFilteredProducts from "@/app/hooks/useFilteredProducts.ts";
 
 export default function ProductList() {
-	const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-
-	const { data, error, isLoading } = useSWR(
-		"https://fakestoreapi.com/products",
-		fetcher,
-		{
-			onSuccess: (data) => {
-				setFilteredProducts(data);
-			},
-		},
-	);
-
+	const { filteredProducts } = useFilteredProducts();
+	const { isLoading, error } = useData();
+	const { increase } = useCart();
 	return (
 		<main className="justify-center gap-3 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-6 max-w-450">
 			{isLoading && "loading"}
@@ -28,15 +15,17 @@ export default function ProductList() {
 			{/* Product cards will be rendered if it's not currently fetching and has no error. */}
 			{!isLoading &&
 				!error &&
-				filteredProducts.map((e) =>
-					ProductCard({
-						id: e.id,
-						title: e.title,
-						price: e.price,
-						image: e.image,
-						category: e.category,
-					}),
-				)}
+				filteredProducts?.map((e) => (
+					<ProductCard
+						key={e.id}
+						id={e.id}
+						title={e.title}
+						category={e.category}
+						image={e.image}
+						price={e.price}
+						increase={increase}
+					></ProductCard>
+				))}
 		</main>
 	);
 }
