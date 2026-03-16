@@ -1,6 +1,6 @@
 export default function Skeleton() {
 	return (
-		<div className="flex flex-col shadow-md hover:shadow-sky-400 mt-8 px-4 py-4 rounded-md w-full h-96 animate-pulse">
+		<div className="flex flex-col shadow-md mt-8 px-4 py-4 rounded-md w-screen md:w-full h-96 animate-pulse">
 			<div className="bg-gray-200 w-full h-7/12"></div>
 
 			<div className="flex flex-col flex-1 mt-3">
