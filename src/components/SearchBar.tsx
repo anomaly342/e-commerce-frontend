@@ -60,7 +60,7 @@ export default function SearchBar() {
 					toggleShowFilter={toggleShowFilter}
 				></FilterIcon>
 				<div
-					className={`left-0 absolute bg-amber-300 px-6 py-6 cursor-pointer rounded-md w-screen ${showFilter ? "" : "hidden"}`}
+					className={`left-0 absolute bg-amber-300 px-6 py-6 rounded-xl w-screen max-w-3xl md:left-1/2 md:-translate-x-1/2 ${showFilter ? "" : "hidden"}`}
 				>
 					<div>
 						<h3 className="text-gray-800">Categories</h3>
