@@ -3,7 +3,6 @@ import FilterIcon from "@/components/icons/FilterIcon.tsx";
 import Radio from "@/components/Radio.tsx";
 import useFilter from "@/hooks/useFilter.ts";
 import { Category } from "@/types/types.ts";
-import { useState } from "react";
 
 const radios = [
 	{
@@ -44,8 +43,8 @@ const checkboxes: { id: Category }[] = [
 ];
 
 export default function SearchBar() {
-	const { keyword, handleKeywordChange } = useFilter();
-	const [showFilter, setShowFilter] = useState<boolean>(false);
+	const { keyword, showFilter, toggleShowFilter, handleKeywordChange } =
+		useFilter();
 	return (
 		<div className="flex items-center">
 			<input
@@ -56,8 +55,13 @@ export default function SearchBar() {
 				onChange={handleKeywordChange}
 			/>
 			<div>
-				<FilterIcon className="ml-4 size-8 cursor-pointer"></FilterIcon>
-				<div className="left-0 absolute bg-amber-300 px-6 py-6 rounded-md w-screen">
+				<FilterIcon
+					className="ml-4 size-8 cursor-pointer"
+					toggleShowFilter={toggleShowFilter}
+				></FilterIcon>
+				<div
+					className={`left-0 absolute bg-amber-300 px-6 py-6 cursor-pointer rounded-md w-screen ${showFilter ? "" : "hidden"}`}
+				>
 					<div>
 						<h3 className="text-gray-800">Categories</h3>
 						<ul className="flex flex-wrap gap-2 mt-3 list-none">

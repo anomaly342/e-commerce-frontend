@@ -1,7 +1,7 @@
 import { FilterContext } from "@/contexts/FilterContext.ts";
 import useData from "@/hooks/useData.ts";
 import { Category, PriceRange } from "@/types/types.ts";
-import { ChangeEvent, useContext } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 
 export default function useFilter() {
 	const { data } = useData();
@@ -13,7 +13,7 @@ export default function useFilter() {
 		setCategories,
 		setPriceRange,
 	} = useContext(FilterContext);
-
+	const [showFilter, setShowFilter] = useState<boolean>(false);
 	const handleKeywordChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.currentTarget.value;
 		setKeyword(value);
@@ -29,6 +29,10 @@ export default function useFilter() {
 		setCategories((prev) => {
 			return { ...prev, [value]: !prev[value] };
 		});
+	};
+
+	const toggleShowFilter = () => {
+		setShowFilter((prev) => !prev);
 	};
 
 	const minPrice = () => {
@@ -68,6 +72,8 @@ export default function useFilter() {
 		keyword,
 		categories,
 		priceRange,
+		showFilter,
+		toggleShowFilter,
 		handleKeywordChange,
 		handlePriceRangeChange,
 		handleCategoryChange,
