@@ -1,6 +1,7 @@
 "use client";
 
 import ProductCard from "@/components/ProductCard.tsx";
+import Skeleton from "@/components/Skeleton.tsx";
 import useCart from "@/hooks/useCart.ts";
 import useData from "@/hooks/useData.ts";
 import useFilter from "@/hooks/useFilter";
@@ -11,9 +12,12 @@ export default function ProductList() {
 	const { increase } = useCart();
 	return (
 		<main className="justify-center gap-3 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-4 px-6 w-full max-w-450">
-			{isLoading && "loading"}
+			{isLoading &&
+				Array(12)
+					.fill(0)
+					.map((e, i) => <Skeleton key={i}></Skeleton>)}
 			{error && "error"}
-			{/* Product cards will be rendered if it's not currently fetching and has no error. */}
+
 			{!isLoading &&
 				!error &&
 				filteredProducts?.map((e) => (
