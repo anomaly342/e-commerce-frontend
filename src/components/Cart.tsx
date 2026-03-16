@@ -2,26 +2,14 @@ import CartItem from "@/components/CartItem.tsx";
 import ArrowIcon from "@/components/icons/ArrowIcon";
 import useCart from "@/hooks/useCart.ts";
 
-export default function Cart({
-	toggleShowCart,
-	showCart,
-}: {
-	toggleShowCart: () => void;
-	showCart: boolean;
-}) {
-	const { cart, totalPrice, increase, decrease } = useCart();
-	return (
-		<div
-			className={`z-40 top-0 right-0 flex flex-col fixed bg-white w-screen max-w-130 h-screen ${showCart ? "" : "hidden"}`}
-		>
-			<header className="flex items-center mb-5 px-4 py-5">
-				<ArrowIcon
-					toggleShowCart={toggleShowCart}
-					className="mr-4 cursor-pointer"
-				></ArrowIcon>
-				<h2 className="text-sky-600">View Cart</h2>
-			</header>
-			<ul className="overflow-auto">
+const RenderCart = () => {
+	const { cart, increase, decrease } = useCart();
+
+	if (cart.length === 0) {
+		return <h3 className="m-auto w-fit text-gray-500 text-2xl">Empty Cart</h3>;
+	} else {
+		return (
+			<>
 				{cart.map((e) => (
 					<CartItem
 						key={e.id}
@@ -35,6 +23,32 @@ export default function Cart({
 						decrease={decrease}
 					></CartItem>
 				))}
+			</>
+		);
+	}
+};
+
+export default function Cart({
+	toggleShowCart,
+	showCart,
+}: {
+	toggleShowCart: () => void;
+	showCart: boolean;
+}) {
+	const { totalPrice } = useCart();
+	return (
+		<div
+			className={`z-40 top-0 right-0 flex flex-col fixed bg-white w-screen max-w-130 h-screen ${showCart ? "" : "hidden"}`}
+		>
+			<header className="flex items-center mb-5 px-4 py-5">
+				<ArrowIcon
+					toggleShowCart={toggleShowCart}
+					className="mr-4 cursor-pointer"
+				></ArrowIcon>
+				<h2 className="text-sky-600">View Cart</h2>
+			</header>
+			<ul className="overflow-auto grow">
+				<RenderCart></RenderCart>
 			</ul>
 			<footer className="mt-auto">
 				<div className="px-4 py-6">
