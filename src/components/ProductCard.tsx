@@ -14,7 +14,7 @@ const ProductCard = memo(
 		console.log(title, "rerenders");
 		return (
 			<div
-				className="flex flex-col shadow-md mt-8 px-2 py-4 rounded-md w-full h-96"
+				className="flex flex-col shadow-md hover:shadow-sky-400 mt-8 px-2 py-4 rounded-md w-full h-96 transition"
 				key={id}
 			>
 				<div className="h-7/12">

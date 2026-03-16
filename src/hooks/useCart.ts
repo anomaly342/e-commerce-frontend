@@ -7,9 +7,16 @@ export default function useCart() {
 	const { data } = useData();
 	const { cart, setCart } = useContext(CartContext);
 	const { showCart, setShowCart } = useContext(CartContext);
-	const totalPrice = cart.reduce((total, current) => {
-		return total + current.price * current.quantity;
-	}, 0);
+
+	const { totalPrice, totalQuantity } = cart.reduce(
+		(acc, current) => {
+			return {
+				totalPrice: acc.totalPrice + current.price * current.quantity,
+				totalQuantity: acc.totalQuantity + current.quantity,
+			};
+		},
+		{ totalPrice: 0, totalQuantity: 0 },
+	);
 
 	const toggleShowCart = () => {
 		setShowCart((prev) => !prev);
@@ -24,6 +31,7 @@ export default function useCart() {
 			if (newItem === undefined) {
 				return alert("Product not found");
 			}
+			console.log(totalQuantity);
 
 			// Check if the item already exists in the cart. If true, increment its quantity and mark this cart array as changed
 			setCart((prevCart) => {
@@ -64,5 +72,13 @@ export default function useCart() {
 		});
 	}, []);
 
-	return { cart, totalPrice, showCart, toggleShowCart, increase, decrease };
+	return {
+		cart,
+		totalPrice,
+		totalQuantity,
+		showCart,
+		toggleShowCart,
+		increase,
+		decrease,
+	};
 }
