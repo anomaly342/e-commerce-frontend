@@ -20,6 +20,8 @@ export interface CartUnit extends Product {
 export interface CartContextType {
 	cart: CartUnit[];
 	showCart: boolean;
+	totalPrice: number;
+	totalQuantity: number;
 	setCart: React.Dispatch<React.SetStateAction<CartUnit[]>>;
 	setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -33,4 +35,14 @@ export interface FilterContextType {
 		React.SetStateAction<{ [key in Category]: boolean }>
 	>;
 	setPriceRange: React.Dispatch<React.SetStateAction<PriceRange>>;
+}
+
+export interface Toast {
+	message: string;
+}
+[];
+
+export interface ToastContextType {
+	toast: Toast[];
+	setToast: React.Dispatch<React.SetStateAction<Toast[]>>;
 }

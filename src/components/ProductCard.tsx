@@ -11,7 +11,6 @@ const ProductCard = memo(
 		category,
 		increase,
 	}: Product & { increase: (id: number) => void }) => {
-		console.log(title, "rerenders");
 		return (
 			<div
 				className="flex flex-col shadow-md hover:shadow-sky-400 mt-8 px-2 py-4 rounded-md w-full h-96 transition"

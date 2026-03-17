@@ -5,11 +5,13 @@ import Skeleton from "@/components/Skeleton.tsx";
 import useCart from "@/hooks/useCart.ts";
 import useData from "@/hooks/useData.ts";
 import useFilter from "@/hooks/useFilter";
+import useToast from "@/hooks/useToast.ts";
 
 export default function ProductList() {
 	const { filteredProducts } = useFilter();
 	const { isLoading, error } = useData();
 	const { increase } = useCart();
+	const { toast } = useToast();
 	return (
 		<main className="justify-center gap-3 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-4 px-6 w-full max-w-450">
 			{isLoading &&
@@ -31,6 +33,14 @@ export default function ProductList() {
 						increase={increase}
 					></ProductCard>
 				))}
+
+			<div className="right-3 bottom-3 fixed flex flex-col-reverse gap-1">
+				{toast.map((e, i) => (
+					<p key={i} className="bg-green-300 px-3 py-3 w-fit text-xl">
+						{e.message}
+					</p>
+				))}
+			</div>
 		</main>
 	);
 }
