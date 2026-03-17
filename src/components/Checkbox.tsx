@@ -1,6 +1,6 @@
 import useFilter from "@/hooks/useFilter.ts";
 import { Category } from "@/types/types.ts";
-import capitalizeFirstLetter from "@/utilities/CapitalizeFirstLetter.tsx";
+import capitalizeFirstLetter from "@/utilities/CapitalizeFirstLetter.ts";
 
 export default function Checkbox({ id }: { id: Category }) {
 	const { categories, handleCategoryChange } = useFilter();
