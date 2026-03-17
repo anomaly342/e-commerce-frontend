@@ -3,7 +3,7 @@ import ArrowIcon from "@/components/icons/ArrowIcon";
 import useCart from "@/hooks/useCart.ts";
 
 const RenderCart = () => {
-	const { cart, increase, decrease, getSummary } = useCart();
+	const { cart, increase, decrease } = useCart();
 	if (cart.length === 0) {
 		return <h3 className="m-auto w-fit text-gray-500 text-2xl">Empty Cart</h3>;
 	} else {
