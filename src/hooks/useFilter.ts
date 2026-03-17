@@ -1,5 +1,5 @@
 import { FilterContext } from "@/contexts/FilterProvider";
-import { Category, PriceRange } from "@/types/types.ts";
+import { Category, PriceRange, SortOption } from "@/types/types.ts";
 import { ChangeEvent, useContext, useState } from "react";
 
 export default function useFilter() {
@@ -7,9 +7,11 @@ export default function useFilter() {
 		keyword,
 		categories,
 		priceRange,
+		sort,
 		setKeyword,
 		setCategories,
 		setPriceRange,
+		setSort,
 	} = useContext(FilterContext);
 	const [showFilter, setShowFilter] = useState<boolean>(false);
 
@@ -18,8 +20,7 @@ export default function useFilter() {
 		setKeyword(value);
 	};
 
-	const handlePriceRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const value = e.currentTarget.value as PriceRange;
+	const handlePriceRangeChange = (value: PriceRange) => {
 		setPriceRange(value);
 	};
 
@@ -29,18 +30,24 @@ export default function useFilter() {
 		});
 	};
 
+	const handleSortChange = (value: SortOption) => {
+		setSort(value);
+	};
+
 	const toggleShowFilter = () => {
 		setShowFilter((prev) => !prev);
 	};
 
 	return {
-		keyword,
-		categories,
-		priceRange,
 		showFilter,
+		keyword,
+		priceRange,
+		categories,
+		sort,
 		toggleShowFilter,
 		handleKeywordChange,
 		handlePriceRangeChange,
 		handleCategoryChange,
+		handleSortChange,
 	};
 }

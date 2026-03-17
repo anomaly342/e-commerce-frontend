@@ -1,4 +1,9 @@
-import { Category, FilterContextType, PriceRange } from "@/types/types.ts";
+import {
+	Category,
+	FilterContextType,
+	PriceRange,
+	SortOption,
+} from "@/types/types.ts";
 import { createContext, useState } from "react";
 
 export const FilterContext = createContext<FilterContextType>({
@@ -10,6 +15,7 @@ export const FilterContext = createContext<FilterContextType>({
 		jewelery: true,
 	},
 	priceRange: "none",
+	sort: "name",
 } as FilterContextType);
 
 export function FilterProvider({ children }: { children: React.ReactNode }) {
@@ -21,6 +27,7 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
 		jewelery: true,
 	});
 	const [priceRange, setPriceRange] = useState<PriceRange>("none");
+	const [sort, setSort] = useState<SortOption>("name");
 
 	return (
 		<FilterContext.Provider
@@ -28,9 +35,11 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
 				keyword,
 				categories,
 				priceRange,
+				sort,
 				setKeyword,
 				setCategories,
 				setPriceRange,
+				setSort,
 			}}
 		>
 			{children}

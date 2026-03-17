@@ -27,8 +27,8 @@ export default function useCart() {
 			}
 
 			// Check if the item already exists in the cart. If true, increment its quantity and mark this cart array as changed
+			let isIncremented = false;
 			setCart((prevCart) => {
-				let isIncremented = false;
 				const nextCart = prevCart.map((e) => {
 					if (e.id === id) {
 						isIncremented = true;
@@ -71,7 +71,8 @@ export default function useCart() {
 		const summaryObject = cart.reduce(
 			(acc, current, index) => {
 				for (const [key, value] of Object.entries(current)) {
-					acc[`items.${index}.${key}`] = value;
+					if (["id", "title", "price", "quantity"].includes(key))
+						acc[`items.${index}.${key}`] = value;
 				}
 
 				return acc;
@@ -96,10 +97,10 @@ export default function useCart() {
 	};
 
 	return {
+		showCart,
 		cart,
 		totalPrice,
 		totalQuantity,
-		showCart,
 		toggleShowCart,
 		increase,
 		decrease,

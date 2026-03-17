@@ -20,6 +20,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 	useEffect(() => {
 		localStorage.setItem("cart", JSON.stringify(cart));
 	}, [cart]);
+
 	const { totalPrice, totalQuantity } =
 		cart === undefined
 			? { totalPrice: 0, totalQuantity: 0 }

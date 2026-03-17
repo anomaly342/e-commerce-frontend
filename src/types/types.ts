@@ -5,6 +5,7 @@ export type Category =
 	| "women's clothing";
 
 export type PriceRange = "none" | "under $50" | "$50-$200" | "over $200";
+export type SortOption = "name" | "price";
 export interface Product {
 	id: number;
 	title: string;
@@ -30,11 +31,13 @@ export interface FilterContextType {
 	keyword: string;
 	categories: { [key in Category]: boolean };
 	priceRange: PriceRange;
+	sort: SortOption;
 	setKeyword: React.Dispatch<React.SetStateAction<string>>;
 	setCategories: React.Dispatch<
 		React.SetStateAction<{ [key in Category]: boolean }>
 	>;
 	setPriceRange: React.Dispatch<React.SetStateAction<PriceRange>>;
+	setSort: React.Dispatch<React.SetStateAction<SortOption>>;
 }
 
 export interface Toast {
