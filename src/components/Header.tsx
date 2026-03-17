@@ -12,10 +12,10 @@ export default function Header() {
 		<header className="top-0 z-10 sticky flex justify-between items-center bg-white px-4 py-5 border-b border-b-blue-800">
 			<div className="font-semibold text-2xl">Store</div>
 			<SearchBar></SearchBar>
-			<div className="relative">
-				<CartIcon toggleShowCart={toggleShowCart}></CartIcon>
+			<div className="relative cursor-pointer" onClick={toggleShowCart}>
+				<CartIcon></CartIcon>
 				<label
-					className={`-top-1/4 -right-1/8 absolute bg-orange-400 px-1 py-1 rounded-md text-right font-bold text-white overflow-hidden ${totalQuantity === 0 ? "hidden" : ""}`}
+					className={`-top-1/4 -right-1/8 absolute cursor-pointer bg-orange-400 px-1 py-1 rounded-md text-right font-bold text-white overflow-hidden ${totalQuantity === 0 ? "hidden" : ""}`}
 				>
 					<motion.p
 						key={totalQuantity}
