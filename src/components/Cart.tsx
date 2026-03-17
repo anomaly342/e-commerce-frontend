@@ -3,8 +3,7 @@ import ArrowIcon from "@/components/icons/ArrowIcon";
 import useCart from "@/hooks/useCart.ts";
 
 const RenderCart = () => {
-	const { cart, increase, decrease } = useCart();
-
+	const { cart, increase, decrease, getSummary } = useCart();
 	if (cart.length === 0) {
 		return <h3 className="m-auto w-fit text-gray-500 text-2xl">Empty Cart</h3>;
 	} else {
@@ -35,7 +34,7 @@ export default function Cart({
 	toggleShowCart: () => void;
 	showCart: boolean;
 }) {
-	const { totalPrice } = useCart();
+	const { totalPrice, getSummary } = useCart();
 	return (
 		<div
 			className={`z-40 top-0 right-0 flex flex-col fixed bg-white w-screen max-w-130 h-screen ${showCart ? "" : "hidden"}`}
@@ -56,8 +55,11 @@ export default function Cart({
 						<h3>Total Price</h3>
 						<p>${totalPrice.toFixed(2)}</p>
 					</div>
-					<button className="block content-center bg-blue-500 mt-4 mr-auto ml-auto px-4 py-3 border-none rounded-md font-bold text-white text-lg">
-						Check out
+					<button
+						className="block content-center bg-blue-500 mt-4 mr-auto ml-auto px-4 py-3 border-none rounded-md font-bold text-white text-lg cursor-pointer"
+						onClick={getSummary}
+					>
+						Print summary to console
 					</button>
 				</div>
 			</footer>

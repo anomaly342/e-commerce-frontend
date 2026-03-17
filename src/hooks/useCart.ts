@@ -1,18 +1,21 @@
 import { CartContext } from "@/contexts/CartProvider";
 import useData from "@/hooks/useData.ts";
+import useFilter from "@/hooks/useFilter.ts";
 import useToast from "@/hooks/useToast.ts";
 import { CartUnit } from "@/types/types.ts";
 import { useCallback, useContext } from "react";
 
 export default function useCart() {
-	const { data } = useData();
 	const { cart, setCart, showCart, setShowCart, totalPrice, totalQuantity } =
 		useContext(CartContext);
+	const { categories, priceRange } = useFilter();
+	const { data } = useData();
 	const { addToToast } = useToast();
 
 	const toggleShowCart = () => {
 		setShowCart((prev) => !prev);
 	};
+
 	const increase = useCallback(
 		(id: number) => {
 			if (data === undefined) {
@@ -64,6 +67,34 @@ export default function useCart() {
 		});
 	}, []);
 
+	const getSummary = () => {
+		const summaryObject = cart.reduce(
+			(acc, current, index) => {
+				for (const [key, value] of Object.entries(current)) {
+					acc[`items.${index}.${key}`] = value;
+				}
+
+				return acc;
+			},
+			{} as Record<string, string | number>,
+		);
+		const categoryString = () => {
+			let str = [];
+			for (const [key, value] of Object.entries(categories)) {
+				if (value === true) {
+					str.push(key);
+				}
+			}
+
+			return str.toString();
+		};
+
+		summaryObject["filters.category"] = categoryString();
+		summaryObject["filters.priceRange"] = priceRange;
+		summaryObject["metadata.timestamp"] = new Date().toISOString();
+		console.log(summaryObject);
+	};
+
 	return {
 		cart,
 		totalPrice,
@@ -72,5 +103,6 @@ export default function useCart() {
 		toggleShowCart,
 		increase,
 		decrease,
+		getSummary,
 	};
 }

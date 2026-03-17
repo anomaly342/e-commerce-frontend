@@ -13,17 +13,17 @@ const radios = [
 	{
 		id: "under $50",
 		name: "price",
-		value: "a",
+		value: "under $50",
 	},
 	{
 		id: "$50-$200",
 		name: "price",
-		value: "b",
+		value: "$50-$200",
 	},
 	{
 		id: "over $200",
 		name: "price",
-		value: "c",
+		value: "over $200",
 	},
 ];
 

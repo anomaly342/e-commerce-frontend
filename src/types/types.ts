@@ -4,7 +4,7 @@ export type Category =
 	| "electronics"
 	| "women's clothing";
 
-export type PriceRange = "none" | "a" | "b" | "c";
+export type PriceRange = "none" | "under $50" | "$50-$200" | "over $200";
 export interface Product {
 	id: number;
 	title: string;

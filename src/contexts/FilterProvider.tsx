@@ -1,9 +1,16 @@
 import { Category, FilterContextType, PriceRange } from "@/types/types.ts";
 import { createContext, useState } from "react";
 
-export const FilterContext = createContext<FilterContextType>(
-	{} as FilterContextType,
-);
+export const FilterContext = createContext<FilterContextType>({
+	keyword: "",
+	categories: {
+		"men's clothing": true,
+		"women's clothing": true,
+		electronics: true,
+		jewelery: true,
+	},
+	priceRange: "none",
+} as FilterContextType);
 
 export function FilterProvider({ children }: { children: React.ReactNode }) {
 	const [keyword, setKeyword] = useState<string>("");

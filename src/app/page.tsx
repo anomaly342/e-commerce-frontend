@@ -4,11 +4,11 @@ import ProductCard from "@/components/ProductCard.tsx";
 import Skeleton from "@/components/Skeleton.tsx";
 import useCart from "@/hooks/useCart.ts";
 import useData from "@/hooks/useData.ts";
-import useFilter from "@/hooks/useFilter";
+import useFilterProducts from "@/hooks/useFilteredProducts.ts";
 import useToast from "@/hooks/useToast.ts";
 
 export default function ProductList() {
-	const { filteredProducts } = useFilter();
+	const { filteredProducts } = useFilterProducts();
 	const { isLoading, error } = useData();
 	const { increase } = useCart();
 	const { toast } = useToast();
