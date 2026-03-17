@@ -14,6 +14,7 @@ export default function ProductList() {
 	const { toast } = useToast();
 	return (
 		<main className="justify-center gap-3 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-4 px-6 w-full max-w-450">
+			<title>Store</title>
 			{isLoading &&
 				Array(12)
 					.fill(0)

@@ -6,6 +6,7 @@ import { useMemo } from "react";
 export default function useFilterProducts() {
 	const { data } = useData();
 	const { keyword, categories, priceRange, sort } = useFilter();
+
 	const minPrice = () => {
 		if (priceRange === "none" || priceRange === "under $50") {
 			return 0;
