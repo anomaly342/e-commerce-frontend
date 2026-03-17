@@ -1,16 +1,19 @@
-import useFilter from "@/hooks/useFilter.ts";
-import capitalizeFirstLetter from "@/utilities/CapitalizeFirstLetter.tsx";
+import { PriceRange, SortOption } from "@/types/types.ts";
+import capitalizeFirstLetter from "@/utilities/CapitalizeFirstLetter.ts";
 
-export default function Radio({
+export default function Radio<T extends PriceRange | SortOption>({
 	id,
 	name,
 	value,
+	checker,
+	handleChange,
 }: {
 	id: string;
 	name: string;
-	value: string;
+	value: T;
+	checker: T;
+	handleChange: (value: T) => void;
 }) {
-	const { priceRange, handlePriceRangeChange } = useFilter();
 	return (
 		<li>
 			<input
@@ -18,8 +21,8 @@ export default function Radio({
 				id={id}
 				name={name}
 				value={value}
-				checked={priceRange === value}
-				onChange={handlePriceRangeChange}
+				checked={checker === value}
+				onChange={() => handleChange(value)}
 			/>
 			<p className="inline ml-2">{capitalizeFirstLetter(id)}</p>
 		</li>
