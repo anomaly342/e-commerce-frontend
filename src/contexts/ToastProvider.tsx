@@ -10,11 +10,17 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (toast.length > 0) setToast((prev) => prev.slice(1));
+			setToast((prev) => {
+				if (prev.length > 0) {
+					return prev.slice(1);
+				} else {
+					return prev;
+				}
+			});
 		}, 8000);
 
 		return () => clearInterval(timer);
-	}, [toast]);
+	}, []);
 
 	return (
 		<ToastContext.Provider value={{ toast, setToast }}>
