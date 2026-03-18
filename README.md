@@ -33,7 +33,7 @@ npm run dev
 - Filtering by categories and/or price ranges.
 - Sorting by price or name.
 - Hover effects on cards.
-- Card animations when adding items.
+- Cart animations when adding items.
 - Sticky header with cart icon showing item count.
 - Toast notification when adding items, it disappears after 8 seconds.
 - Save card to localStorage when cart is changed.
