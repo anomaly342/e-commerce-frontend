@@ -11,7 +11,7 @@ import "./globals.css";
 const roboto = Roboto({
 	subsets: ["latin"],
 });
-export default function RootLayout({
+function Layout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
@@ -22,15 +22,25 @@ export default function RootLayout({
 			<body
 				className={`${roboto.className} antialiased text-gray-950 h-full ${showCart ? "overflow-y-hidden" : ""}`}
 			>
-				<ToastProvider>
-					<CartProvider>
-						<FilterProvider>
-							<Header></Header>
-							<div className="flex justify-center">{children}</div>
-						</FilterProvider>
-					</CartProvider>
-				</ToastProvider>
+				<Header></Header>
+				<div className="flex justify-center">{children}</div>
 			</body>
 		</html>
+	);
+}
+
+export default function RootLayout({
+	children,
+}: Readonly<{
+	children: React.ReactNode;
+}>) {
+	return (
+		<ToastProvider>
+			<CartProvider>
+				<FilterProvider>
+					<Layout>{children}</Layout>
+				</FilterProvider>
+			</CartProvider>
+		</ToastProvider>
 	);
 }
