@@ -33,7 +33,7 @@ npm run dev
 - Filtering by categories and/or price ranges.
 - Sorting by price or name.
 - Hover effects on cards.
-- Card animations when adding items.
+- Cart animations when adding items.
 - Sticky header with cart icon showing item count.
 - Toast notification when adding items, it disappears after 8 seconds.
 - Save card to localStorage when cart is changed.
@@ -53,7 +53,7 @@ I tried to encapsulate all codes as much as possible, so it took longer than I e
 
 I was debating whether I should go with Grid or Flex for product listing, I chose Flex first because it seems like it would be effective for responsive design. But since the image size is variable, I found it extremely hard to make all cards identical in size since image size is variable.
 
-So I ended up using Flex because I can specify consistent size for my product cards, and it has also convenient CSS properties like `grid-cols-x` which makes it very easy to determine how many columns I want in each device size.
+So I ended up using Grid because I can specify consistent size for my product cards, and it has also convenient CSS properties like `grid-cols-x` which makes it very easy to determine how many columns I want in each device size.
 
 ### Some Optimization
 
